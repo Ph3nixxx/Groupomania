@@ -15,7 +15,7 @@ Cloner le projet via le lien suivant : https://github.com/Ph3nixxx/Groupomania.
 
 Créez un compte (ou se connecter directement si vous en possédez déjà un) sur le site internet suivant  : https://www.mongodb.com/cloud/atlas/register.
 Une fois connecté, créer une base de données via le bouton "+Create".
-A partir de la base de données créée, appuyez sur le bouton "Connect" puis "Connect your application". Vous devez ajouter la chaîne de caractères du petit 2, après le @ dans le fichier "server.js" du projet, dans la variable "DB_URL".
+A partir de la base de données créée, appuyez sur le bouton "Connect" puis "Connect your application". Vous devez ajouter la chaîne de caractères du petit 2, après le @ dans le fichier "config.js" du projet, dans la variable "DB_URL".
 Ajoutez enfin votre nom de compte dans la variable "DB_LOGIN" et votre mot de passe dans la variable "DB_PASSWORD" de ce même fichier.
 
 - Démarrage backend :
