@@ -1,0 +1,91 @@
+#signup-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    width: 80%;
+    max-width: 750px;
+    font-size: 18px;    
+    font-weight: bold;
+    color: var(--tertiary);
+    background-color: var(--secondary);
+    border: 3px solid var(--tertiary);
+    border-radius: 50px;
+    margin: 2em auto;
+    padding: 50px;
+}
+
+.signup-form-requirements, .input-error {
+    color: var(--primary);
+}
+
+.sublabel {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-control {
+    border: 3px solid var(--tertiary);
+    border-radius: 50px;
+    font-size: 18px; 
+}
+
+.form-textarea-control {
+    border: 3px solid var(--tertiary);
+    width: 100%;
+    font-size: 16px; 
+}
+
+#signupButton, #loginButton, #modifyButton {
+    font-family: "Lato", sans-serif;
+    font-size: 18px;    
+    font-weight: bold;
+    color: var(--tertiary);
+    background-color: white;
+    border: 3px solid var(--tertiary);
+}
+
+::-webkit-file-upload-button {
+    color: white;
+    background: var(--primary);
+    border: none;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    cursor: pointer;
+}
+
+::-webkit-file-upload-button:hover{
+    opacity: 0.5;
+}
+
+#signupButton, #loginButton, #modifyButton {
+    cursor: pointer;
+}
+
+#signupButton:hover, #loginButton:hover, #modifyButton:hover {
+    color: white;
+    background: var(--primary);
+}
+
+@media all and (max-width: 1024px) {
+
+    #signup-form {
+        padding: 30px;
+    }
+}
+
+@media all and (max-width: 350px) {
+
+    #signup-form {
+        padding: 10px;
+    }
+}
