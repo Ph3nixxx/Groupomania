@@ -18,13 +18,23 @@ Une fois connecté, créer une base de données via le bouton "+Create".
 A partir de la base de données créée, appuyez sur le bouton "Connect" puis "Connect your application". Vous devez ajouter la chaîne de caractères du petit 2, après le @ dans le fichier "config.js" du projet, dans la variable "DB_URL".
 Ajoutez enfin votre nom de compte dans la variable "DB_LOGIN" et votre mot de passe dans la variable "DB_PASSWORD" de ce même fichier.
 
-- Démarrage backend :
+- Installation backend :
 
 Dans le terminal VSCode, à partir de la racine du projet, inscrivez :
 
 `cd backend`
 
 `npm install`
+
+`cd images`
+
+`mkdir download`
+
+- Démarrage backend :
+
+Dans le terminal VSCode, à partir de la racine du projet, inscrivez :
+
+`cd backend`
 
 `npm run dev`
 
