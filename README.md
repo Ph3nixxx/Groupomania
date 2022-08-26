@@ -13,10 +13,24 @@ Cloner le projet via le lien suivant : https://github.com/Ph3nixxx/Groupomania.
 
 - Mise en place d'une base de données MongoDB :
 
-Créez un compte (ou se connecter directement si vous en possédez déjà un) sur le site internet suivant  : https://www.mongodb.com/cloud/atlas/register.
+Créez un compte (ou se connecter directement si vous en possédez déjà un) sur le site internet suivant : https://www.mongodb.com/cloud/atlas/register.
 Une fois connecté, créer une base de données via le bouton "+Create".
-A partir de la base de données créée, appuyez sur le bouton "Connect" puis "Connect your application". Vous devez ajouter la chaîne de caractères du petit 2, après le @ dans le fichier "config.js" du projet, dans la variable "DB_URL".
-Ajoutez enfin votre nom de compte dans la variable "DB_LOGIN" et votre mot de passe dans la variable "DB_PASSWORD" de ce même fichier.
+
+- Création du fichier des variables d'environnement :
+
+A partir de la racine du projet, dans le dossier backend, créez un nouveau fichier ".env" et coller ces informations :
+
+DB_URL=""
+DB_LOGIN=""
+DB_PASSWORD=""
+
+JWT_STRING=""
+
+A partir de la base de données MongoDB créée, appuyez sur le bouton "Connect" puis "Connect your application". 
+
+Vous devez ajouter la chaîne de caractères qui succède le @ du petit 2, dans la variable "DB_URL".
+Ajoutez ensuite votre nom de compte dans la variable "DB_LOGIN" et votre mot de passe dans la variable "DB_PASSWORD" de ce même fichier.
+Enfin, vous devez définir de façon aléatoire et assez conséquente une chaîne de caractères à intégrer dans la variable "JWT_STRING".
 
 - Installation backend :
 

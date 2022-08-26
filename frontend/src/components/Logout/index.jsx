@@ -10,8 +10,6 @@ export default function Logout() {
 
   removeCookie("jwt");
   localStorage.removeItem("token");
-  localStorage.removeItem("id");
-  localStorage.removeItem("isAdmin");
   
   window.location = "/login";
 };

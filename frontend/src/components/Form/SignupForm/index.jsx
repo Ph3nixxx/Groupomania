@@ -28,9 +28,14 @@ export default function SignupForm() {
             inputsErrorFunction[input].handleValidation(inputs[input].value);
         }
 
-        if (inputs.password.value !== inputs.controlPassword.value) {
+        if(inputs.password.value !== inputs.controlPassword.value) {
             allInputsValid = false;
             inputsErrorFunction.controlPassword.errorFunction("Les mots de passe ne correspondent pas"); 
+        }
+
+        if(inputs.photoUrl && inputs.photoUrl.value && ((inputs.photoUrl.value.type !== "image/png") && (inputs.photoUrl.value.type !== "image/jpg") && (inputs.photoUrl.value.type !== "image/jpeg"))){
+            allInputsValid = false;
+            inputsErrorFunction.photoUrl.errorFunction("Le fichier n'est pas sous un format accepté");
         }
         
         for(const input in inputs) {
@@ -66,7 +71,7 @@ export default function SignupForm() {
 
     return (
         <form action="" onSubmit={handleSignup} id="signup-form" noValidate>
-            <span className="signup-form-requirements">* Les champs sont requis</span>
+            <span className="signup-form-requirements">* champs requis</span>
             <br />
             <Input input={"name"} label={"* Nom"} sublabel={"entre 2 et 40 caractères"} type={"text"} required= {true} pattern= {"[a-zA-Z]{2,40}"} register={registerInput} update={updateInput} />
             <Input input={"firstname"} label={"* Prénom"} sublabel={"entre 2 et 40 caractères"} type={"text"} required= {true} pattern= {"[a-zA-Z]{2,40}"} register={registerInput} update={updateInput} />

@@ -1,5 +1,6 @@
 /* Modules */
 import React from 'react';
+import jwt_decode from "jwt-decode";
 
 /* Dépendances */
 import Input from '../../components/Form/Input';
@@ -7,7 +8,7 @@ import { postsService } from '../../_services/posts.service';
 
 export default function CreatePost() {
 
-    let userId = localStorage.getItem("id");
+    let userId = (jwt_decode(localStorage.getItem("token"))).userId;
 
     let inputs = {};
     let inputsErrorFunction = {};
@@ -28,6 +29,11 @@ export default function CreatePost() {
 
         for(const input in inputsErrorFunction) {
             inputsErrorFunction[input].handleValidation(inputs[input].value);
+        }
+
+        if(inputs.imageUrl && inputs.imageUrl.value && ((inputs.imageUrl.value.type !== "image/png") && (inputs.imageUrl.value.type !== "image/jpg") && (inputs.imageUrl.value.type !== "image/jpeg"))){
+            allInputsValid = false;
+            inputsErrorFunction.imageUrl.errorFunction("Le fichier n'est pas sous un format accepté");
         }
 
         for(const input in inputs) {

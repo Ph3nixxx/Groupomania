@@ -1,6 +1,7 @@
 /* Modules */
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
 
 /* Dépendances */
 import deletePost from "./DeleteCard";
@@ -41,13 +42,13 @@ export default function Cards() {
     <div className="cards">
     { posts && posts.map((post) => {
 
-      let id = localStorage.getItem("id");
+      let id = (jwt_decode(localStorage.getItem("token"))).userId;
       let sameId = false;
       if (id === post.userId._id) {
         sameId = true
       }
 
-      let isAdmin = localStorage.getItem("isAdmin");
+      let isAdmin = (jwt_decode(localStorage.getItem("token"))).isAdmin;
 
       return(
         <div className="card" key={post._id}>
@@ -76,7 +77,7 @@ export default function Cards() {
             <div className="card-bottom-like">
               <LikeButton post={post} />
             </div>
-            { (sameId === true || isAdmin === "true") &&
+            { (sameId === true || isAdmin === true) &&
             <>
             <div className="card-bottom-edit">
               <Link to={`/modifyPost/${post._id}`}><i className="fa-regular fa-pen-to-square color fa-2x"></i></Link>

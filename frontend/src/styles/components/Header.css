@@ -56,7 +56,7 @@ h2 {
     cursor: pointer;
 }
 
-a:hover {
+a:hover, li:hover {
     text-decoration: underline;
 }
 

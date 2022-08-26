@@ -1,5 +1,6 @@
 /* Modules */
 import React, { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
 
 /* Dépendances */
 import { postsService } from "../../_services/posts.service";
@@ -8,7 +9,7 @@ export default function LikeButton({ post }) {
 
   let [liked, setLiked] = useState(false);
   let id = post._id;
-  let userId = localStorage.getItem("id");
+  let userId = (jwt_decode(localStorage.getItem("token"))).userId;
 
   useEffect(() => {
     if (post.usersLiked.includes(userId)){

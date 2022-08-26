@@ -6,6 +6,7 @@ const router = express.Router();
 const userCtrl = require('../controllers/user');
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
+const loginLimiter = require('../middleware/rate-limiter');
 
 /* Permet de récupérer les informations d'un utilisateur */
 router.get('/user/:id', auth, userCtrl.getOneUser);
@@ -14,7 +15,7 @@ router.get('/user/:id', auth, userCtrl.getOneUser);
 router.post('/signup', multer, userCtrl.signup);
 
 /* Permet la connexion d'un utilisateur après la création de son compte au préalable */
-router.post('/login', userCtrl.login);
+router.post('/login', loginLimiter, userCtrl.login);
 
 /* Permet la modification des données d'un utilisateur */
 router.put('/update/:id', auth, multer, userCtrl.updateUser);

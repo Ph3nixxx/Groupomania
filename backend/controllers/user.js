@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 
 /* Dépendances */
 const User = require('../models/User');
-const serverConfig = require('../config');
 
 function isEmail(email) {
     var emailFormat=/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9]+$/;
@@ -75,12 +74,12 @@ exports.login = (req, res, next) => {
                 return res.status(403).json({ error: {password: 'Mot de passe incorrect !'} });
             }
             return res.status(200).json({
-                userId: user._id,
                 token: jwt.sign(
-                { userId: user._id },
-                serverConfig.JWT_STRING,
+                { userId: user._id, isAdmin: user.isAdmin },
+                process.env.JWT_STRING,
                 { expiresIn: '1h' }
                 ),
+                userId: user._id,
                 isAdmin: user.isAdmin
             }); 
         })

@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 /* Dépendances */
-const serverConfig = require('./config');
 const userRoutes = require('./routes/user');
 const postsRoutes = require('./routes/posts');
 
@@ -13,7 +12,7 @@ const app = express();
 
 /* configuration de la base de données MongoDB Atlas */
 
-mongoose.connect('mongodb+srv://' + serverConfig.DB_LOGIN + ':' + serverConfig.DB_PASSWORD + '@' + serverConfig.DB_URL,
+mongoose.connect('mongodb+srv://' + process.env.DB_LOGIN + ':' + process.env.DB_PASSWORD + '@' + process.env.DB_URL,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))

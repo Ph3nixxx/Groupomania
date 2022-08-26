@@ -1,5 +1,6 @@
 /* Modules */
 import React, { useState, useEffect } from 'react';
+import jwt_decode from "jwt-decode";
 
 /* Dépendances */
 import Input from '../Input'
@@ -9,7 +10,7 @@ export default function ModifyProfilForm() {
 
     let [user, setUser] = useState(null);
 
-    let id = localStorage.getItem("id");
+    let id = (jwt_decode(localStorage.getItem("token"))).userId;
     
     function getOneUser(){
         accountService.getOneUser(id)
@@ -51,9 +52,9 @@ export default function ModifyProfilForm() {
             inputsErrorFunction.controlPassword.errorFunction("Les mots de passe ne correspondent pas"); 
         }
 
-        if(inputs.imageUrl && inputs.imageUrl.value && ((inputs.imageUrl.value.type !== "image/png") && (inputs.imageUrl.value.type !== "image/jpg") && (inputs.imageUrl.value.type !== "image/jpeg"))){
+        if(inputs.photoUrl && inputs.photoUrl.value && ((inputs.photoUrl.value.type !== "image/png") && (inputs.photoUrl.value.type !== "image/jpg") && (inputs.photoUrl.value.type !== "image/jpeg"))){
             allInputsValid = false;
-            inputsErrorFunction.imageUrl.errorFunction("Le fichier n'est pas sous un format accepté");
+            inputsErrorFunction.photoUrl.errorFunction("Le fichier n'est pas sous un format accepté");
         }
 
         for(const input in inputs) {
@@ -85,7 +86,7 @@ export default function ModifyProfilForm() {
     return (
         <form action="" onSubmit={handleModifyProfil} id="signup-form" noValidate>
             { user && <div>
-            <span className="signup-form-requirements">* Les champs sont requis</span>
+            <span className="signup-form-requirements">* champs requis</span>
             <br /><br />
             <Input input={"name"} label={"* Nom"} sublabel={"entre 2 et 40 caractères"} type={"text"} required= {false} pattern= {"[a-zA-Z]{2,40}"} register={registerInput} update={updateInput} defaultValue={user.name} />
             <Input input={"firstname"} label={"* Prénom"} sublabel={"entre 2 et 40 caractères"} type={"text"} required= {false} pattern= {"[a-zA-Z]{2,40}"} register={registerInput} update={updateInput} defaultValue={user.firstname} />

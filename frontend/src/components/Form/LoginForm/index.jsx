@@ -41,13 +41,15 @@ export default function LoginForm() {
       )
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("id", res.data.userId);
-        localStorage.setItem("isAdmin", res.data.isAdmin);
         window.location = "/home";
       } )
       .catch((error) => {
-        inputsErrorFunction.email.errorFunction(error.response.data.error.email)
-        inputsErrorFunction.password.errorFunction(error.response.data.error.password)
+        console.log (error.response);
+        if(error.response.status === 429) {
+          inputsErrorFunction.password.errorFunction(error.response.data)
+        } else {
+          inputsErrorFunction.password.errorFunction("Au moins l'un des champs requis est incorrect")
+        }
       });
     } else {
       console.log("champs non valides");
@@ -56,7 +58,7 @@ export default function LoginForm() {
     
   return (
       <form action="" onSubmit={handleLogin} id="signup-form" noValidate>
-        <span className="signup-form-requirements">* Les champs sont requis</span>
+        <span className="signup-form-requirements">* champs requis</span>
         <br />
         <Input input={"email"} label={"* Adresse Email"} sublabel={"ex: exemple@exemple.fr"} type={"email"}  required= {true} pattern= {"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.]{1}[a-zA-Z]{2,}$"} register={registerInput} update={updateInput} />
         <Input input={"password"} label={"* Mot de Passe"} sublabel={"entre 6 et 40 caractères"} type={"password"} required= {true} pattern= {"[a-zA-Z0-9._%+-]{6,40}"} register={registerInput} update={updateInput} />
